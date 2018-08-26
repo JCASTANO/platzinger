@@ -1,0 +1,22 @@
+ionic
+	basado en angular
+	cordova para acceder a caracteristicas nativas
+	lo nativo tiene mejor performance
+
+cordova
+	open source
+	acceso a caracteristicas nativa atraves de javascript
+
+ionic cli
+	set de herramientas de consola provisto para
+	ts -> js
+	crear servidor local
+	exportar para ios o android
+	
+-------------
+
+
+npm list -g --depth=0
+
+ionic start platzinger sidemenu
+ionic cordova run browser

@@ -1,3 +1,5 @@
+import { LoginPage } from './../login/login';
+import { ConversationPage } from './../conversation/conversation';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -7,8 +9,16 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(private navCtrl: NavController) {
 
+  }
+
+  goToConversation() {
+    this.navCtrl.push(ConversationPage);
+  }
+
+  goToLogin() {
+    this.navCtrl.push(LoginPage);
   }
 
 }

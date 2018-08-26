@@ -1,0 +1,12 @@
+* ionic start informesmoviles sidemenu
+
+* https://ionicframework.com/docs/components/#buttons-in-components (botones circulares)
+
+* this.navCtrl.push(NombrePagina); para navegar hacia delante
+  this.navCtrl.pop(); para volver a la página anterior
+
+* en app.scss
+
+	button {
+		text-transform: none !important;
+	}

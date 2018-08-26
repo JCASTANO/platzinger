@@ -1,0 +1,23 @@
+ionic
+	ios
+	android
+	
+webview
+	browser embebido
+	html, css, resource, js
+	javascript bridger provided by framework
+		hybrid app framework cordoba
+			usar el hardware del dispositivo
+				ios android native apis
+				
+regresando la nostalgia
+	platzinger
+	mensajeria instantanea
+	agregar amigos
+	comunicacion en tiempo real
+	se podran enviar zumbidos
+	
+@IonicPage() Con este decorador decimos que se trata de un page (esta página no debe ser incluida dentro de otra)
+
+this.navCtrl.push(NombrePagina); para navegar hacia delante
+this.navCtrl.pop(); para volver a la página anterior
