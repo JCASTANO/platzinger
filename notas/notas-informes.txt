@@ -10,3 +10,7 @@
 	button {
 		text-transform: none !important;
 	}
+	
+* https://medium.com/learn-ionic-framework/ionic-4-vs-ionic-3-todo-lo-que-necesitas-saber-sobre-ionic-4-5235927c6dd9
+
+* npm list -g --depth=0
