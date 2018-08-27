@@ -14,3 +14,17 @@
 * https://medium.com/learn-ionic-framework/ionic-4-vs-ionic-3-todo-lo-que-necesitas-saber-sobre-ionic-4-5235927c6dd9
 
 * npm list -g --depth=0
+
+* ionic start testv4 sidemenu --type=angular
+
+* usar tipos de datos e interfaces para tipos de datos
+	ejemplo User ts, campos opcionales con ?
+
+	let c: number = 1;
+    let a: number = 1;
+	
+* https://www.typescriptlang.org/docs/handbook/basic-types.html
+
+* ejemplo
+
+	https://github.com/EduardoIbarra/msn_mobile_platzi_pre

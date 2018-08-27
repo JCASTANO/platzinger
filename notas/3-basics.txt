@@ -1,1 +1,14 @@
 https://medium.com/learn-ionic-framework/ionic-4-vs-ionic-3-todo-lo-que-necesitas-saber-sobre-ionic-4-5235927c6dd9
+
+typescript -> tipos de datos
+
+let c: number = 1;
+let a: number = 1;
+
+https://www.typescriptlang.org/docs/handbook/basic-types.html
+
+interfaces
+
+	definicios de tipos
+	
+ *ngFor="let user of friends; let i = index"
