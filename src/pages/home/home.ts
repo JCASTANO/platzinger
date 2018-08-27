@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { User } from './../../interfaces/user';
 import { LoginPage } from './../login/login';
 import { ConversationPage } from './../conversation/conversation';
@@ -11,23 +12,14 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
 
   friends: User[] = [];
+  query: string;
 
-  constructor(private navCtrl: NavController) {
-    let usuario1: User = {
-      nick: 'Eduardo',
-      email: 'a@gmail.com',
-      friend: true,
-      uid : 1
-    };
+  constructor(public navCtrl: NavController,public userService: UserService) {
+    this.friends = this.userService.getUsers();
+  }
 
-    let usuario2: User = {
-      nick: 'Juan',
-      email: 'juan@gmail.com',
-      friend: true,
-      uid : 1
-    };
-
-    this.friends = [usuario1,usuario2];
+  initConversation(user: User) {
+    this.navCtrl.push(ConversationPage,{"user": user});
   }
 
   goToConversation() {
@@ -36,6 +28,21 @@ export class HomePage {
 
   goToLogin() {
     this.navCtrl.push(LoginPage);
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.friends = this.userService.getUsers();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.friends = this.friends.filter((item) => {
+        return (item.nick.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
   }
 
 }

@@ -12,3 +12,17 @@ interfaces
 	definicios de tipos
 	
  *ngFor="let user of friends; let i = index"
+ 
+ ng-container
+ 
+ pipes
+ 
+Pipe
+Son elementos que podemos usar en el lado del HTML que nos perite formatear información para desplegarlo de una mejor manera. Estos son los vistos en clase:
+
+json: formatea en formato JSON.
+number: 1.2-2: formatea según parámetros, 
+	en este caso los decimales serían mínimo dos y máximo dos.
+date: ‘medium’: formatea en formato fecha y hora legible.
+
+<p>Conversarion with {{user | json}}</p>

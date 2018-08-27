@@ -1,9 +1,12 @@
 * ionic start informesmoviles sidemenu
+* ionic generate provider services/user
+* ionic generate page login
 
 * https://ionicframework.com/docs/components/#buttons-in-components (botones circulares)
 
 * this.navCtrl.push(NombrePagina); para navegar hacia delante
   this.navCtrl.pop(); para volver a la página anterior
+  this.navCtrl.push(ConversationPage,{"user": user});
 
 * en app.scss
 
@@ -30,3 +33,7 @@
 	https://github.com/EduardoIbarra/msn_mobile_platzi_pre
 	
 * http-server ./www
+
+* ng-container -> en caso que requiere ngFor y ngIf
+
+* https://angular.io/guide/pipes

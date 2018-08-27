@@ -11,8 +11,22 @@
   <button ion-button (click)="goToConversation()">Ir a conversation</button>
   <button ion-button (click)="goToLogin()">Ir a Login</button>
 
-  <p *ngFor="let user of friends; let i = index">
-    {{ i }}. {{ user.nick }} - {{ user.email }}
-  </p>
+  <br />
+  <!-- <ion-searchbar placeholder="Buscar amigos por nick" (ionInput)="getItems($event)"></ion-searchbar> -->
+  <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
+  <b>Amigos</b>
+  <ion-list>
+      <ng-container *ngFor="let user of friends | search: query; let i = index">
+          <ion-item (click)="initConversation(user)">
+             <ion-avatar item-start>
+                <img *ngIf="user.status === 'Online'" height="50" width="50" src="assets/imgs/logo_live_online.png">
+                <img *ngIf="user.status === 'Offline'" height="50" width="50" src="assets/imgs/logo_live_offline.png">
+             </ion-avatar>
+              <p>
+                  {{ i }}. Nick: {{ user.nick }} Mail: {{ user.email }}
+              </p>
+          </ion-item>
+      </ng-container>
+  </ion-list>
 
 </ion-content>

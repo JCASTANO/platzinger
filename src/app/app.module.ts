@@ -1,3 +1,5 @@
+import { SearchPipe } from './../pipes/search.pipe';
+import { UserService } from './../services/user.service';
 import { AboutPageModule } from './../pages/about/about.module';
 import { ConversationPageModule } from './../pages/conversation/conversation.module';
 import { LoginPageModule } from './../pages/login/login.module';
@@ -17,7 +19,8 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
   providers: [
     StatusBar,
     SplashScreen,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
