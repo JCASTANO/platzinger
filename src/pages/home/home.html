@@ -4,29 +4,47 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <img src="assets/imgs/logo_live_add.png" class="icon-in-button">
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button (click)="goToConversation()">Ir a conversation</button>
-  <button ion-button (click)="goToLogin()">Ir a Login</button>
+<ion-content padding class="backgroundAmsnImg">
 
-  <br />
-  <!-- <ion-searchbar placeholder="Buscar amigos por nick" (ionInput)="getItems($event)"></ion-searchbar> -->
-  <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
-  <b>Amigos</b>
-  <ion-list>
-      <ng-container *ngFor="let user of friends | search: query; let i = index">
-          <ion-item (click)="initConversation(user)">
-             <ion-avatar item-start>
-                <img *ngIf="user.status === 'Online'" height="50" width="50" src="assets/imgs/logo_live_online.png">
-                <img *ngIf="user.status === 'Offline'" height="50" width="50" src="assets/imgs/logo_live_offline.png">
-             </ion-avatar>
-              <p>
-                  {{ i }}. Nick: {{ user.nick }} Mail: {{ user.email }}
-              </p>
-          </ion-item>
-      </ng-container>
-  </ion-list>
+  <ion-grid id="homeMeContainer">
+    <ion-row>
+      <ion-col col-3>
+        <div class="avatarFrameonline">
+            <img src="assets/imgs/generic_avatar.png" class="avatarImg img-fliud">
+        </div>
+      </ion-col>
+      <ion-col col-9>
+        Nick <br />
+        <small>Subnick</small> <br />
+        <small><b>juan@platzi.com</b></small>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="searchBoxContainer">
+      <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
+  </div>
+
+  <div>
+    <div>
+      <b>Amigos</b>
+    </div>
+    <div class="contact-list-item" *ngFor="let user of friends | search: query; let i = index" 
+        [ngClass]="{'contact-offline' : offlineStatus.includes(user.status)}"
+        [ngStyle]="{'color' : offlineStatus.includes(user.status) ? 'red' : 'blue'}" 
+        (click)="initConversation(user)">
+      <img src="assets/imgs/{{getIconByStatus(user.status)}}.png" class="status">
+      <b>{{user.name}}</b>
+      <small *ngIf="user.status">{{user.status}}</small>
+    </div>
+</div>
 
 </ion-content>

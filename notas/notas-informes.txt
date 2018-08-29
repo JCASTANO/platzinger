@@ -37,3 +37,10 @@
 * ng-container -> en caso que requiere ngFor y ngIf
 
 * https://angular.io/guide/pipes
+
+* http://www.colorzilla.com/gradient-editor/ (gradientes y fondos de pantalla)
+* https://ionicframework.com/docs/theming/responsive-grid/
+
+* https://ionicframework.com/docs/cli/cordova/resources/
+	ionic cordova resources android
+	ionic cordova resources ios

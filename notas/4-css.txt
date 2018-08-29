@@ -1,0 +1,13 @@
+<ion-row>
+	<ion-col col-6 offset-3></ion-col>
+</ion-row>
+
+6 columnas -> empieza despues de la 3
+
+https://ionicframework.com/docs/theming/responsive-grid/
+
+Angular cuenta con directivas propias para poder asignar estilos de forma dinámica.
+ngClass se encarga de asignar una clase CSS a un elemento siempre y cuando 
+esta cumpla una condición que le marques. Por otro lado, 
+ngStyle asigna una propiedad CSS a algún elemento siempre y cuando cumpla alguna condición.
+Es recomendable siempre usar ngClass en lugar de ngStyle.

@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user.service';
-import { User } from './../../interfaces/user';
+import { User, Status } from './../../interfaces/user';
 import { LoginPage } from './../login/login';
 import { ConversationPage } from './../conversation/conversation';
 import { Component } from '@angular/core';
@@ -13,9 +13,11 @@ export class HomePage {
 
   friends: User[] = [];
   query: string;
+  offlineStatus: Status[];
 
   constructor(public navCtrl: NavController,public userService: UserService) {
     this.friends = this.userService.getUsers();
+    this.offlineStatus = [Status.Offline, Status.AppearOffline];
   }
 
   initConversation(user: User) {
@@ -43,6 +45,30 @@ export class HomePage {
         return (item.nick.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  getIconByStatus (status) {
+    let icon = ''
+
+    switch (status) {
+      case Status.Online:
+        icon = 'logo_live_online';
+        break;
+      case Status.Offline:
+        icon = 'logo_live_offline';
+        break;
+      case Status.Busy:
+        icon = 'logo_live_busy';
+        break;
+      case Status.Away:
+        icon = 'logo_live_away';
+        break;
+      case Status.AppearOffline:
+        icon = 'logo_live_appear_offline';
+        break;
+    }
+
+    return icon;
   }
 
 }
