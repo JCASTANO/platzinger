@@ -42,7 +42,7 @@
         [ngStyle]="{'color' : offlineStatus.includes(user.status) ? 'red' : 'blue'}" 
         (click)="initConversation(user)">
       <img src="assets/imgs/{{getIconByStatus(user.status)}}.png" class="status">
-      <b>{{user.name}}</b>
+      <b>{{user.nick}}</b>
       <small *ngIf="user.status">{{user.status}}</small>
     </div>
 </div>

@@ -14,10 +14,23 @@ export class HomePage {
   friends: User[] = [];
   query: string;
   offlineStatus: Status[];
+  
 
   constructor(public navCtrl: NavController,public userService: UserService) {
-    this.friends = this.userService.getUsers();
+    this.userService.get().valueChanges().subscribe((data: User[]) => {
+      this.friends = data;
+    });
     this.offlineStatus = [Status.Offline, Status.AppearOffline];
+
+    /* let usuario1: User = {
+      name: 'Eduardo',
+      nick: 'Eduardo',
+      email: 'eduardo@gmail.com',
+      friend: true,
+      uid : Date.now(),
+      status: Status.Online
+    };
+    this.userService.add(usuario1); */
   }
 
   initConversation(user: User) {
@@ -32,7 +45,7 @@ export class HomePage {
     this.navCtrl.push(LoginPage);
   }
 
-  getItems(ev: any) {
+  /* getItems(ev: any) {
     // Reset items back to all of the items
     this.friends = this.userService.getUsers();
 
@@ -45,7 +58,7 @@ export class HomePage {
         return (item.nick.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
+  } */
 
   getIconByStatus (status) {
     let icon = ''

@@ -7,12 +7,10 @@ export enum Status {
   }
 
 export interface User {
-    name: string,
     nick: string;
-    subnick?: string;
     age?: number;
+    active: boolean;
     email: string;
-    friend: boolean;
     uid: any;
     status: Status;
 }
