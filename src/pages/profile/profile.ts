@@ -64,7 +64,7 @@ export class ProfilePage {
         destinationType: this.camera.DestinationType.DATA_URL, //base 64
         encodingType: this.camera.EncodingType.JPEG, //jepg
         mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: false, //acomodar la camara
+        correctOrientation: true, //acomodar la camara
         allowEdit: false //habilitar programas de edicion
       };
       cameraOptions.sourceType = (source == 'camera') ?  this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY;
