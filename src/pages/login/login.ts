@@ -18,9 +18,9 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-  password: string;
+  password: string = '123456';
   password2: string;
-  email: string;
+  email: string = 'angie@gmail.com';
   status: Status;
   nick: string;
   operation: string = 'login';

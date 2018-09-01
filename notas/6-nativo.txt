@@ -1,0 +1,4 @@
+ionic serve -c
+https://ionicframework.com/docs/native/camera/
+
+npm install --save-exact @ionic-native/camera

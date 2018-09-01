@@ -18,6 +18,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../services/auth';
 import { Facebook } from '@ionic-native/facebook';
+import { Camera} from '@ionic-native/camera';
+import { AngularFireStorageModule} from 'angularfire2/storage';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBFrzwF-GZHDc97UEgKHP2u69YU2d53nSY",
@@ -40,6 +42,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     LoginPageModule,
     ConversationPageModule,
     ProfilePageModule,
@@ -56,6 +59,7 @@ export const firebaseConfig = {
     UserService,
     AuthService,
     Facebook,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

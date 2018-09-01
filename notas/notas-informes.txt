@@ -45,8 +45,23 @@
 	ionic cordova resources android
 	ionic cordova resources ios
 
-* ionic cordova platform  add android
+* 
+  ionic cordova platform rm android
+  ionic cordova platform add android
+  ionic cordova build android
   ionic cordova run android
   
   ionic serve -c
   ionic serve --lab
+  
+* https://ionicframework.com/docs/intro/deploying/ -> deploying
+
+  ionic cordova run android --device
+  npm install -g cordova
+  ionic cordova build android (despues de tener android studio)
+  https://ionicframework.com/docs/v1/guide/publishing.html
+  
+* native
+
+	https://ionicframework.com/docs/native/camera/
+	https://ionicframework.com/docs/native/geolocation/
