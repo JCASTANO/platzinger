@@ -49,3 +49,4 @@
   ionic cordova run android
   
   ionic serve -c
+  ionic serve --lab
