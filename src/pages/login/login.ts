@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { Status, User } from '../../interfaces/user';
 import { AuthService } from '../../services/auth';
 import { UserService } from '../../services/user.service';
@@ -25,7 +25,13 @@ export class LoginPage {
   nick: string;
   operation: string = 'login';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public authService: AuthService, public userService: UserService, private toastCtrl: ToastController) {
+  constructor(private platform: Platform,public navCtrl: NavController, public navParams: NavParams,public authService: AuthService, public userService: UserService, private toastCtrl: ToastController) {
+    if (this.platform.is('cordova')) {
+      console.log('cordova');
+    }
+    else {
+      console.log('no cordova');
+    }
   }
 
   registerWithEmail() {
@@ -65,6 +71,7 @@ export class LoginPage {
   }
 
   facebookAuth() {
+
     this.authService.signInWithFacebook().then((data) => {
       console.log(data);
       const user: User = {
@@ -86,6 +93,7 @@ export class LoginPage {
         }).catch((error) => {
           alert('Ocurrió un error');
           console.log(error);
+          console.log('Primer catch');
         });
       }else {
         let toast = this.toastCtrl.create({
@@ -99,6 +107,7 @@ export class LoginPage {
     }).catch((error) => {
       alert('Ocurrió un error');
       console.log(error);
+      console.log('Segundo catch');
     })
   }
 

@@ -23,6 +23,6 @@ export class AuthService {
   }
 
   logOut() {
-    this.firebaseAuth.auth.signOut();
+    return this.firebaseAuth.auth.signOut();
   }
 }
