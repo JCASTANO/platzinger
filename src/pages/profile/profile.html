@@ -20,7 +20,7 @@
       <ion-row>
         <ion-col col-6 offset-3>
           <div class="avatarFrameonline">
-              <img src="assets/imgs/generic_avatar.png" class="avatarImg img-fliud">
+              <img *ngIf="user" height="200" width="200" src="{{user.avatar || 'assets/imgs/generic_avatar.png'}}" class="avatarImg img-fliud">
           </div>
         </ion-col>
       </ion-row>

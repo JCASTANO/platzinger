@@ -64,7 +64,7 @@ export class ProfilePage {
         destinationType: this.camera.DestinationType.DATA_URL, //base 64
         encodingType: this.camera.EncodingType.JPEG, //jepg
         mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: true, //acomodar la camara
+        correctOrientation: false, //acomodar la camara
         allowEdit: false //habilitar programas de edicion
       };
       cameraOptions.sourceType = (source == 'camera') ?  this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY;
@@ -78,14 +78,14 @@ export class ProfilePage {
       this.currentPictureId = Date.now();
       this.userService.uploadPicture(this.currentPictureId + '.jpg', image).then((data) => {
         this.userService.getDownloadURL(this.currentPictureId + '.jpg').subscribe((url) => {
-          this.user.avatar_url = url;
+          this.user.avatar = url;
           let toast = this.toastCtrl.create({
             message: 'Foto subida',
             duration: 3000,
             position: 'bottom'
           });
           toast.present();
-          console.log(this.user.avatar_url);
+          console.log(this.user.avatar);
         }, (error) => {
           console.log(error);
         });
