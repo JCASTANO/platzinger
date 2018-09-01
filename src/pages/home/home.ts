@@ -3,7 +3,7 @@ import { User, Status } from './../../interfaces/user';
 import { LoginPage } from './../login/login';
 import { ConversationPage } from './../conversation/conversation';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -14,11 +14,13 @@ export class HomePage {
   friends: User[] = [];
   query: string;
   offlineStatus: Status[];
-  
+  user: User;
 
-  constructor(public navCtrl: NavController,public userService: UserService) {
+  constructor(public navCtrl: NavController,public userService: UserService,public navParams: NavParams) {
     this.userService.get().valueChanges().subscribe((data: User[]) => {
       this.friends = data;
+      let email = this.navParams.get('email');
+      this.user = this.friends.find(friend => friend.email === email);
     });
     this.offlineStatus = [Status.Offline, Status.AppearOffline];
 

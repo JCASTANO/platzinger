@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AngularFireAuth} from "angularfire2/auth";
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
@@ -7,5 +8,21 @@ export class AuthService {
   }
   registerWithEmail(email, password) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+  loginWithEmail(email, password) {
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  signInWithFacebook() {
+    return this.firebaseAuth.auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  getStatus() {
+    return this.firebaseAuth.authState;
+  }
+
+  logOut() {
+    this.firebaseAuth.auth.signOut();
   }
 }

@@ -23,6 +23,7 @@ export class LoginPage {
   email: string;
   status: Status;
   nick: string;
+  operation: string = 'login';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public authService: AuthService, public userService: UserService, private toastCtrl: ToastController) {
   }
@@ -51,6 +52,7 @@ export class LoginPage {
           position: 'bottom'
         });
         toast.present();
+        this.operation = 'login';
         console.log(data);
         this.navCtrl.setRoot(HomePage);
       }).catch((error) => {
@@ -60,6 +62,59 @@ export class LoginPage {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  facebookAuth() {
+    this.authService.signInWithFacebook().then((data) => {
+      console.log(data);
+      const user: User = {
+        nick: data.user.displayName,
+        email: data.user.email,
+        status: Status.Online,
+        uid: data.user.uid,
+        active: true
+      };
+      if(data.additionalUserInfo.isNewUser) {
+        this.userService.add(user).then((data2) => {
+          let toast = this.toastCtrl.create({
+            message: 'Conectado a Facebook con éxito',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.navCtrl.setRoot(HomePage,{'email':data.user.email});
+        }).catch((error) => {
+          alert('Ocurrió un error');
+          console.log(error);
+        });
+      }else {
+        let toast = this.toastCtrl.create({
+          message: 'Facebook Login Exitoso',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+        this.navCtrl.setRoot(HomePage,{'email':data.user.email});
+      }
+    }).catch((error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+    })
+  }
+
+  loginWithEmail() {
+    this.authService.loginWithEmail(this.email, this.password).then((data) => {
+      let toast = this.toastCtrl.create({
+        message: 'Bienvenido',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+      this.navCtrl.setRoot(HomePage,{'email':data.user.email});
+    }).catch((error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+    })
   }
 
   ionViewDidLoad() {

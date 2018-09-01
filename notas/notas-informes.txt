@@ -44,3 +44,6 @@
 * https://ionicframework.com/docs/cli/cordova/resources/
 	ionic cordova resources android
 	ionic cordova resources ios
+
+* ionic cordova platform  add android
+  ionic cordova run android

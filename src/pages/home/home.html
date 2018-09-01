@@ -21,10 +21,9 @@
             <img src="assets/imgs/generic_avatar.png" class="avatarImg img-fliud">
         </div>
       </ion-col>
-      <ion-col col-9>
-        Nick <br />
-        <small>Subnick</small> <br />
-        <small><b>juan@platzi.com</b></small>
+      <ion-col col-9 *ngIf="user">
+        {{user.nick}} <br />
+        <small><b>{{user.email}}</b></small>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -33,10 +32,12 @@
       <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
   </div>
 
-  <div>
+  <div *ngIf="friends">
     <div>
-      <b>Amigos</b>
+      <ion-icon name="contact"></ion-icon>
+      <b>Amigos ({{friends.length}}/{{friends.length}})</b>
     </div>
+    <hr />
     <div class="contact-list-item" *ngFor="let user of friends | search: query; let i = index" 
         [ngClass]="{'contact-offline' : offlineStatus.includes(user.status)}"
         [ngStyle]="{'color' : offlineStatus.includes(user.status) ? 'red' : 'blue'}" 
