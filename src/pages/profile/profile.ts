@@ -25,14 +25,14 @@ export class ProfilePage {
     public navParams: NavParams) {
 
       this.authservice.getStatus().subscribe(data => {
-        
-        this.userService.getById(data.uid).valueChanges().subscribe((result: User) => {
-          this.user = result;
-          console.log(this.user);
-        },error => {
-          console.log(error);
-        });
-
+        if(data && data.uid) {
+          this.userService.getById(data.uid).valueChanges().subscribe((result: User) => {
+            this.user = result;
+            console.log(this.user);
+          },error => {
+            console.log(error);
+          });
+        }
       },error => {
         console.log(error);
       });
