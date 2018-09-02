@@ -3,7 +3,10 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../interfaces/user';
 import { AuthService } from '../../services/auth';
 import { UserService } from '../../services/user.service';
-import {Camera, CameraOptions} from '@ionic-native/camera';
+import { Camera, CameraOptions} from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Platform } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Generated class for the ProfilePage page.
@@ -20,19 +23,22 @@ export class ProfilePage {
 
   user: User;
   currentPictureId: any = {};
+  location: any;
 
   constructor(public navCtrl: NavController, 
     public authservice: AuthService,
     public userService: UserService,
     public camera: Camera,
+    public geolocation: Geolocation,
+    public platform: Platform,
     public toastCtrl: ToastController,
+    public httpClient: HttpClient,
     public navParams: NavParams) {
 
       this.authservice.getStatus().subscribe(data => {
         if(data && data.uid) {
           this.userService.getById(data.uid).valueChanges().subscribe((result: User) => {
             this.user = result;
-            console.log(this.user);
           },error => {
             console.log(error);
           });
@@ -40,6 +46,7 @@ export class ProfilePage {
       },error => {
         console.log(error);
       });
+
   }
 
   saveData() {
@@ -96,5 +103,22 @@ export class ProfilePage {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  getLocation() {
+
+    this.platform.ready().then(() => {
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.httpClient.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+resp.coords.latitude+','+resp.coords.longitude+'&sensor=true/false').subscribe((data: any) => {
+          alert(data.results[0].formatted_address);
+          this.user.adress = data.results[0].formatted_address;
+        }, (error) => {
+          console.log(error);
+        });
+      }).catch((error) => {
+        console.log(error.message);
+        console.log('Error getting location', JSON.stringify(error));
+      });
+    });
   }
 }

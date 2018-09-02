@@ -21,7 +21,7 @@ export class LoginPage {
   password: string = '123456';
   password2: string;
   email: string = 'angie@gmail.com';
-  status: Status;
+  status: Status = Status.Online;
   nick: string;
   operation: string = 'login';
 
