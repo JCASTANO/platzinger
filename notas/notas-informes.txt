@@ -83,6 +83,16 @@
 * 
 	firebase init
 	--> public - www -> spa (Y), override index (N)
+	firebase deploy
+	
+*	publicar en play store
+	https://platzi.com/clases/ionic-avanzado/concepto/contenido-bonus9196/publicando-nuestra-aplicacion-en-android-y-ios-sto/material/
+	https://play.google.com/apps/publish/signup/
+	https://developer.android.com/studio/publish/
+	
+* push notifications
+	https://firebase.google.com/docs/cloud-messaging/
+	https://platzi.com/clases/ionic-avanzado/concepto/contenido-bonus9196/publicando-nuestra-aplicacion-en-android-y-ios-sto/material/
 	
 * aws
 	amazon api gateway -> 1 millon de peticiones al mes
