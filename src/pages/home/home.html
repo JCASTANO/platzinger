@@ -5,7 +5,7 @@
     </button>
     <ion-title>Home</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal">
+      <button ion-button icon-only color="royal" (click)="sendRequest()">
         <img src="assets/imgs/logo_live_add.png" class="icon-in-button">
       </button>
     </ion-buttons>
@@ -33,19 +33,17 @@
       <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
   </div>
 
-  <div *ngIf="friends">
+  <div *ngIf="user && user.friends">
     <div>
       <ion-icon name="contact"></ion-icon>
-      <b>Amigos ({{friends.length}}/{{friends.length}})</b>
+      <b>Amigos ({{user.friends.length}}/{{user.friends.length}})</b>
     </div>
     <hr />
-    <div class="contact-list-item" *ngFor="let user of friends | search: query; let i = index" 
+     <div class="contact-list-item" *ngFor="let user of user.friends | search: query; let i = index" 
         [ngClass]="{'contact-offline' : offlineStatus.includes(user.status)}"
         [ngStyle]="{'color' : offlineStatus.includes(user.status) ? 'red' : 'blue'}" 
         (click)="initConversation(user)">
-      <img src="assets/imgs/{{getIconByStatus(user.status)}}.png" class="status">
-      <b>{{user.nick}}</b>
-      <small *ngIf="user.status">{{user.status}}</small>
+        <friend [user_id]="user"></friend>
     </div>
 </div>
 

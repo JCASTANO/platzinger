@@ -3,7 +3,9 @@ import { User, Status } from './../../interfaces/user';
 import { LoginPage } from './../login/login';
 import { ConversationPage } from './../conversation/conversation';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { RequestService } from '../../services/request';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'page-home',
@@ -11,28 +13,24 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  friends: User[] = [];
+  users: User[] = [];
   query: string;
   offlineStatus: Status[];
   user: User;
 
-  constructor(public navCtrl: NavController,public userService: UserService,public navParams: NavParams) {
-    this.userService.get().valueChanges().subscribe((data: User[]) => {
-      this.friends = data;
-      let email = this.navParams.get('email');
-      this.user = this.friends.find(friend => friend.email === email);
-    });
+  constructor(public navCtrl: NavController,public userService: UserService,public navParams: NavParams,
+    public alertCtrl: AlertController, public requestService: RequestService, 
+    public authService: AuthService,public toastCtrl: ToastController) {
     this.offlineStatus = [Status.Offline, Status.AppearOffline];
 
-    /* let usuario1: User = {
-      name: 'Eduardo',
-      nick: 'Eduardo',
-      email: 'eduardo@gmail.com',
-      friend: true,
-      uid : Date.now(),
-      status: Status.Online
-    };
-    this.userService.add(usuario1); */
+    this.authService.getStatus().subscribe((result) => {
+      if(result && result.uid) {
+        this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
+          this.user = user;
+          this.user.friends = Object.keys(this.user.friends).map(key => this.user.friends[key]);
+        });
+      }
+    });
   }
 
   initConversation(user: User) {
@@ -62,28 +60,45 @@ export class HomePage {
     }
   } */
 
-  getIconByStatus (status) {
-    let icon = ''
-
-    switch (status) {
-      case Status.Online:
-        icon = 'logo_live_online';
-        break;
-      case Status.Offline:
-        icon = 'logo_live_offline';
-        break;
-      case Status.Busy:
-        icon = 'logo_live_busy';
-        break;
-      case Status.Away:
-        icon = 'logo_live_away';
-        break;
-      case Status.AppearOffline:
-        icon = 'logo_live_appear_offline';
-        break;
-    }
-
-    return icon;
+  sendRequest() {
+    const prompt = this.alertCtrl.create({
+      title: 'Agregar Amigo',
+      message: "Ingresa el email del amigo que deseas agregar. ¡Le enviaremos tu solicitud!",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {text: 'Cancel',
+          handler: data => {
+            console.log(data);
+          }
+        },
+        {text: 'Save',
+          handler: data => {
+            const request = {
+              timestamp: Date.now(),
+              receiver_email: data.email,
+              sender: this.user,
+              status: 'pending'
+            };
+            this.requestService.createRequest(request).then((data) => {
+              let toast = this.toastCtrl.create({
+                message: 'Solicitud Enviada',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+            }).catch((error) => {
+              console.log(error);
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }

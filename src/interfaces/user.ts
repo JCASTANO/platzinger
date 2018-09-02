@@ -15,4 +15,5 @@ export interface User {
     status: Status;
     avatar?: string;
     adress?: string;
+    friends?: any[];
 }

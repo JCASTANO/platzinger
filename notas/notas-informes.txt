@@ -66,3 +66,7 @@
 
 	https://ionicframework.com/docs/native/camera/
 	https://ionicframework.com/docs/native/geolocation/
+	
+* alerts
+
+	https://ionicframework.com/docs/components/#alert-prompt

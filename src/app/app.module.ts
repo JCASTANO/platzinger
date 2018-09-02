@@ -21,7 +21,10 @@ import { Facebook } from '@ionic-native/facebook';
 import { Camera} from '@ionic-native/camera';
 import { AngularFireStorageModule} from 'angularfire2/storage';
 import { Geolocation} from "@ionic-native/geolocation";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";  
+import {ConversationService} from "../services/conversation"; 
+import {RequestService} from "../services/request";
+import {ComponentsModule} from "../components/components.module";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBFrzwF-GZHDc97UEgKHP2u69YU2d53nSY",
@@ -47,6 +50,7 @@ export const firebaseConfig = {
     AngularFireStorageModule,
     HttpClientModule,
     LoginPageModule,
+    ComponentsModule,
     ConversationPageModule,
     ProfilePageModule,
     AboutPageModule
@@ -64,6 +68,8 @@ export const firebaseConfig = {
     Facebook,
     Camera,
     Geolocation,
+    ConversationService,
+    RequestService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
