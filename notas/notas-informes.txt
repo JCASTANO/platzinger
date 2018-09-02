@@ -70,3 +70,23 @@
 * alerts
 
 	https://ionicframework.com/docs/components/#alert-prompt
+	
+* aws
+	amazon api gateway -> 1 millon de peticiones al mes
+	cloud front -> 50gb de almacenamiento al mes, 2000000 http
+	registry docker -> 500mb al mes
+	efs -> 5gb de almacenamiento
+	ebs -> 30gb
+	elastic cache -> 750 horas al mes
+	elastic search -> 750 horas al mes
+	sns/sqs -> 1000000 pub/sus al mes
+	
+	ec2 -> 750 horas al mes al mes
+	rds -> 750 horas al mes
+	s3 -> 5gb de almacenamiento, 20000 get, 2000 put estandar al mes
+	elb -> 750 horas al mes
+	route 53 -> 
+		0,50 USD por zona hospedada/mes para las primeras 25 zonas hospedadas
+		0,400 USD por cada millón de consultas – primeros mil millones de consultas/mes
+	
+	https://calculator.s3.amazonaws.com/index.html
