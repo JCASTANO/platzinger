@@ -71,6 +71,19 @@
 
 	https://ionicframework.com/docs/components/#alert-prompt
 	
+* 
+	Para compilar y subir a la tienen necesitas si o si una mac que tenga xcode instalado.
+	https://platzi.com/clases/ionic-avanzado/concepto/deploy/exportando-app-para-ios-y-complementando-con-xcode/material/
+	
+	ionic cordova platform add ios
+	ionic cordova build ios
+	
+	se debe crear team -> tiene un costo
+	
+* 
+	firebase init
+	--> public - www -> spa (Y), override index (N)
+	
 * aws
 	amazon api gateway -> 1 millon de peticiones al mes
 	cloud front -> 50gb de almacenamiento al mes, 2000000 http

@@ -109,7 +109,7 @@ export class ProfilePage {
 
     this.platform.ready().then(() => {
       this.geolocation.getCurrentPosition().then((resp) => {
-        this.httpClient.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+resp.coords.latitude+','+resp.coords.longitude+'&sensor=true/false').subscribe((data: any) => {
+        this.httpClient.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+resp.coords.latitude+','+resp.coords.longitude+'&sensor=true/false').subscribe((data: any) => {
           alert(data.results[0].formatted_address);
           this.user.adress = data.results[0].formatted_address;
         }, (error) => {
