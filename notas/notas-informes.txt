@@ -81,6 +81,8 @@
 	se debe crear team -> tiene un costo
 	
 * 
+	npm run ionic:build --prod
+	ionic doctor check
 	firebase init
 	--> public - www -> spa (Y), override index (N)
 	firebase deploy
