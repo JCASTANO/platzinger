@@ -1,4 +1,4 @@
-* ionic start informesmoviles sidemenu
+* ionic start formulariosmoviles sidemenu
 * ionic generate provider services/user
 * ionic generate page login
 
